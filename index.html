@@ -16,9 +16,9 @@
     </header>
     <main class = "container">
         <h1>Code Quiz Challenge</h1>
-        <div class="hides">
+        <div id="question-info" class="hide">
             <h2>Question:</h2>
-            <div id="question">This will be where the text of the question will be 
+            <div>This will be where the text of the question will be 
                 displayed.  Not sure how long it will be so I put some more words in to see
                 what it looks like. 
             </div>
@@ -29,12 +29,13 @@
                 <button class="btn">Answer 4</button>
             </div>
         </div>
-        <p>
-            Try to answer the following code-related questions within the time
-            limit. Keep in mind that the incorrect answers will penalize your
-            score time by ten seconds!
-        </p>
-        <button id="startBtn">Start</button>
+        <div id = "start-info">
+            <p>
+                Try to answer the following code-related questions within the time limit. 
+                Keep in mind that the incorrect answers will penalize your score time by ten seconds!
+            </p>
+            <button id="start-btn">Start</button>
+        </div>
     </main>
     </div>
     <script src="assets/script.js"></script>
