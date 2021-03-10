@@ -1,0 +1,63 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+.wrapper {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    font-family: sans-serif;
+    background-color: #f9fbfd;
+    justify-content: center;
+    /*text-align: center; */
+}
+
+.wrapper {
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+header {
+    text-align: right;
+    padding: 20px;
+    padding-top: 0px;
+    color: hsl(206, 17%, 28%);
+}
+
+main {
+    flex-wrap: wrap;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+}
+
+main h1 {
+    text-align: center;
+}
+
+main p {
+    min-width: 300px;
+    max-width: 600px;
+    margin-left: 10%;
+    padding-top: 10%;
+    text-align: left;
+}
+
+#startBtn {
+    align-items: center;
+    margin-top: 10%;
+    padding-top: 1%;
+    padding-right: 3%;
+    padding-bottom: 1%;
+    padding-left: 3%;
+}
