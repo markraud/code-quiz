@@ -24,28 +24,28 @@ myQuestion1.answer = 'alerts';
 */
 
 myQuiz = [
-    ['Commonly used data types DO NOT include: ', 'strings'],
-    ['A very useful tool used during development and debugging for printing content to the debugger is:', 'JavaScript']
+    ['Commonly used data types DO NOT include: ', 'strings','booleans', 'alerts','numbers'],
+    ['A very useful tool used during development and debugging for printing content to the debugger is:', 'JavaScript','terminal/bash', 'for loops', 'console.log'],
+    [],
+    []
 ]
-
-
-
 
 //var quizArray = [myQuestion0];
 
 function startQuiz() {
     countdown();
-    questionEl.className = '';
-    startInfo.className ='hide';
+    questionEl.classList.remove('hide');
+    startInfo.classList.add('hide');
     nextQuestion();
     return;
 }
 
 function nextQuestion(){   //I'd need to build a loop in here or something
-    var questionText = document.getElementById('question-text');
-    questionText.innerHTML = myQuiz[0][0];
-    var answerOne = document.getElementById('btn1');
-    answerOne.innerHTML = 'strings';
+    document.getElementById('question-text').innerHTML = myQuiz[0][0];
+    document.getElementById('btn1').innerHTML = myQuiz[0][1];
+    document.getElementById('btn2').innerHTML = myQuiz[0][2];
+    document.getElementById('btn3').innerHTML = myQuiz[0][3];
+    document.getElementById('btn4').innerHTML = myQuiz[0][4];
     return;
 }
 
