@@ -8,22 +8,47 @@ list of high scores
 */
 
 
-
-
-
 var startButton = document.getElementById('start-btn');  // this will start the game 
 var timerEl = document.getElementById('timer');
 var questionEl = document.getElementById('question-info');
 var startInfo = document.getElementById('start-info');
 
+/*
+var myQuestion1 = new Object();
+myQuestion1.text = 'Commonly used data types DO NOT include: ';
+myQuestion1.one = 'strings';
+myQuestion1.two = 'booleans';
+myQuestion1.three = 'alerts';
+myQuestion1.four = 'numbers';
+myQuestion1.answer = 'alerts';
+*/
+
+myQuiz = [
+    ['Commonly used data types DO NOT include: ', 'strings'],
+    ['A very useful tool used during development and debugging for printing content to the debugger is:', 'JavaScript']
+]
+
+
+
+
+//var quizArray = [myQuestion0];
 
 function startQuiz() {
     countdown();
     questionEl.className = '';
     startInfo.className ='hide';
-
+    nextQuestion();
     return;
 }
+
+function nextQuestion(){   //I'd need to build a loop in here or something
+    var questionText = document.getElementById('question-text');
+    questionText.innerHTML = myQuiz[0][0];
+    var answerOne = document.getElementById('btn1');
+    answerOne.innerHTML = 'strings';
+    return;
+}
+
 
 // Timer that counts down from 90
 function countdown() {
