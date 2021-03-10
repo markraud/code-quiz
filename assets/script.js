@@ -1,15 +1,26 @@
 /*
-Start button and intro text
-Timer
-Question text
+Array of questions with 
+
+Questions 
 Multiple choice answer buttions that highlight when hover
 A final page showing score and asking for your initials to be entered. 
 list of high scores 
 */
 
+
+
+
+
 var startButton  // this will start the game  - event listener will start timer
 var timerEl = document.getElementById('timer'); 
 
+
+
+function beginQuiz(){
+    countdown();
+    //add in function to change text to the next question
+    return;
+}
 
 // Timer that counts down from 5
 function countdown() {
@@ -38,4 +49,4 @@ function countdown() {
     }, 1000);
   }
   
-  countdown();
+  startBtn.addEventListener("click", beginQuiz);

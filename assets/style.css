@@ -42,22 +42,59 @@ main {
 }
 
 main h1 {
+    font-size: 45px;
     text-align: center;
+    padding-bottom: 50px;
 }
 
-main p {
-    min-width: 300px;
-    max-width: 600px;
-    margin-left: 10%;
-    padding-top: 10%;
-    text-align: left;
-}
 
-#startBtn {
-    align-items: center;
+#startBtn { 
     margin-top: 10%;
     padding-top: 1%;
     padding-right: 3%;
     padding-bottom: 1%;
     padding-left: 3%;
+}
+
+.container {
+    min-width: 300px;
+    max-width: 600px;
+    margin-left: 10%;
+    padding-top: 10%;
+    text-align: left;
+    line-height: 1.5;
+}
+
+#answer-btns {
+    display: grid;
+    text-align: left;
+    max-width: 10em;
+    padding: 10px;
+    margin: 20px 0 0 50px;
+    
+}
+
+.btn {
+    margin: 3px;
+    border-color: black;
+    border-radius: 30px;
+    padding:10px
+}
+
+.btn:hover {
+    background-color:tan;
+
+}
+
+#question {
+    font-size: 20px;
+    line-height: 1.25;
+    min-width: 300px;
+    max-width: 600px;
+    text-align: left;
+
+}
+
+.hide {
+    display: none;
 }
