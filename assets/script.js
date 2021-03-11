@@ -1,6 +1,5 @@
 /*
 Array of questions with 
-
 Questions 
 Multiple choice answer buttions that highlight when hover
 A final page showing score and asking for your initials to be entered. 
@@ -12,25 +11,29 @@ var startButton = document.getElementById('start-btn');  // this will start the 
 var timerEl = document.getElementById('timer');
 var questionEl = document.getElementById('question-info');
 var startInfo = document.getElementById('start-info');
+var currentQuestion = 0;
+var answerBtns = document.getElementById('answer-btns');
+var timeLeft = 90;
+var score = 0;
 
-/*
-var myQuestion1 = new Object();
-myQuestion1.text = 'Commonly used data types DO NOT include: ';
-myQuestion1.one = 'strings';
-myQuestion1.two = 'booleans';
-myQuestion1.three = 'alerts';
-myQuestion1.four = 'numbers';
-myQuestion1.answer = 'alerts';
-*/
-
-myQuiz = [
-    ['Commonly used data types DO NOT include: ', 'strings','booleans', 'alerts','numbers'],
-    ['A very useful tool used during development and debugging for printing content to the debugger is:', 'JavaScript','terminal/bash', 'for loops', 'console.log'],
-    [],
-    []
+var myQuestions = [
+    {
+        question: 'Commonly used data types DO NOT include: ',
+        answers: ['strings','booleans','alerts','numbers'],
+        correctAnswer: 'alerts'
+    },
+    {
+        question: 'A very useful tool used during development and debugging for printing content to the debugger is:',
+        answers: ['JavaScript', 'terminal/bash','for loops','console.log'],
+        correctAnswer: 'console.log'
+    }
 ]
 
-//var quizArray = [myQuestion0];
+// console.log(myQuestions[0].question);
+// console.log(myQuestions[0].answers[0].text);
+// console.log(myQuestions[0].answers[0].correct);
+
+
 
 function startQuiz() {
     countdown();
@@ -41,19 +44,38 @@ function startQuiz() {
 }
 
 function nextQuestion(){   //I'd need to build a loop in here or something
-    document.getElementById('question-text').innerHTML = myQuiz[0][0];
-    document.getElementById('btn1').innerHTML = myQuiz[0][1];
-    document.getElementById('btn2').innerHTML = myQuiz[0][2];
-    document.getElementById('btn3').innerHTML = myQuiz[0][3];
-    document.getElementById('btn4').innerHTML = myQuiz[0][4];
+    document.getElementById('question-text').innerHTML = myQuestions[currentQuestion].question; 
+    answerBtns.innerHTML = '';
+    //loop over all possible choices
+    myQuestions[currentQuestion].answers.forEach(function(answer){
+        console.log(answer);
+        // create a button to put the answers in
+        var button = document.createElement('button');
+        button.innerText = answer;
+        button.addEventListener("click", checkAnswer);
+        answerBtns.appendChild(button);
+        
+    })
+    
     return;
 }
 
+function checkAnswer(){
+    if (event.target.innerText === myQuestions[currentQuestion].correctAnswer) {
+        console.log('this is correct');
+        score++;
+        currentQuestion++;
+        nextQuestion();
+    } else {
+        console.log('this is wrong');
+        timeLeft-10;
+        currentQuestion++;
+        nextQuestion();
+    }
+}
 
 // Timer that counts down from 90
 function countdown() {
-    var timeLeft = 90;
-
     // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function () {
         // As long as the `timeLeft` is greater than 1
