@@ -100,3 +100,7 @@ main div h2 {
     display: none;
 }
 
+#initials {
+    max-width: 3rem;
+}
+

@@ -13,7 +13,9 @@ var answerBtns = document.getElementById('answer-btns');
 var timeLeft = 90;
 var score = 0;
 var main = document.getElementById('main')
-
+// var initialsInput = document.getElementById('initials');
+// var initialsForm = document.getElementsByID('initials-form');
+// var allScores =[];
 
 var myQuestions = [
     {
@@ -37,7 +39,7 @@ var myQuestions = [
         correctAnswer: 'all of the above'
     }
 ]
-var quizEnder = myQuestions.length - 1;
+//var quizEnder = myQuestions.length - 1;
 
 function startQuiz() {
     countdown();
@@ -98,21 +100,26 @@ function showScore() {
     var finalText = document.createElement('p');
     finalText.innerHTML = "Your final score is: " + score;
     newDiv.appendChild(finalText);
-    var initialsForm = document.createElement('form');
-    initialsForm.setAttribute('id', 'my-form')
-    initialsForm.setAttribute('name', 'myForm')
-    newDiv.appendChild(initialsForm);
-    console.log(initialsForm);
-    initialsForm.innerHTML = "<form><label for='initials'>Please enter initials:\
-    </label><br><input type='text' id='userInit' name='initials'><br></form>"
+    var formEl = document.createElement('form'); //creates form
+    formEl.setAttribute('id', 'initials-form');  //sets form id
+    formEl.setAttribute('method', 'POST');       //sets form method
+    newDiv.appendChild(formEl);
+    //console.log(formEl);
+    formEl.innerHTML = "<label for='initials'>Please enter initials:</label>\
+                        <input type='text' id='initials' name='initials'><br>";
+    console.log(formEl);
+    var submitButton = document.createElement('button');
+    submitButton.innerHTML = 'Submit';
+    newDiv.appendChild(submitButton);
+    console.log(submitButton);
+    submitButton.addEventListener("click", submitInitials);
 
-    
+}
 
+function submitInitials(){
+    console.log('your submit button works and is connected to submitInitials !!')
+    //this will need to store the list in local storage like the todo exercise
 
-
-
-    //create box to put initials in and log
-    //display initials and score
 }
 
 // Timer that counts down from 90
