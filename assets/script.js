@@ -51,38 +51,43 @@ function startQuiz() {
 }
 
 function nextQuestion(){  
+    if (currentQuestion <= (myQuestions.length - 1)) {
     answerBtns.innerHTML = '';
     document.getElementById('question-text').innerHTML = myQuestions[currentQuestion].question;
     //loop over all possible choices
-    myQuestions[currentQuestion].answers.forEach(function(answer){
-        //console.log(answer);
-        // create a button to put the answers in
-        var button = document.createElement('button');
-        button.classList.add('btn');
-        button.innerText = answer;
-        button.addEventListener("click", checkAnswer);
-        answerBtns.appendChild(button);
-    
-    })
+        myQuestions[currentQuestion].answers.forEach(function(answer){
+            //console.log(answer);
+            // create a button to put the answers in
+            var button = document.createElement('button');
+            button.classList.add('btn');
+            button.innerText = answer;
+            button.addEventListener("click", checkAnswer);
+            answerBtns.appendChild(button);
+        
+        })
+    } else {
+        showScore();
+    }
 
     //console.log('this is users ' + score);
+
 }
 
 function checkAnswer(){
     if (event.target.innerText === myQuestions[currentQuestion].correctAnswer) {
         console.log('this is correct');
         score++;
-         if (currentQuestion === (myQuestions.length - 1)) {
-             showScore();
-         }  
+        //  if (currentQuestion === (myQuestions.length - 1)) {
+        //      showScore();
+        //  }  
         currentQuestion++;
         nextQuestion();
     } else {
         console.log('this is wrong');
         timeLeft-10;
-         if (currentQuestion === (myQuestions.length - 1)) {
-             showScore();
-         }
+        //  if (currentQuestion === (myQuestions.length - 1)) {
+        //      showScore();
+        //  }
         currentQuestion++;
         nextQuestion();
     }
