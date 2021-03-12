@@ -12,7 +12,8 @@ var currentQuestion = 0;
 var answerBtns = document.getElementById('answer-btns');
 var timeLeft = 90;
 var score = 0;
-var main = document.getElementById('main')
+var main = document.getElementById('main');
+var newDiv = '';
 // var initialsInput = document.getElementById('initials');
 // var initialsForm = document.getElementsByID('initials-form');
 // var allScores =[];
@@ -61,8 +62,9 @@ function nextQuestion(){
         button.innerText = answer;
         button.addEventListener("click", checkAnswer);
         answerBtns.appendChild(button);
-        
+    
     })
+
     //console.log('this is users ' + score);
 }
 
@@ -70,24 +72,24 @@ function checkAnswer(){
     if (event.target.innerText === myQuestions[currentQuestion].correctAnswer) {
         console.log('this is correct');
         score++;
-        if (currentQuestion === (myQuestions.length - 1)) {
-            showScore();
-        }  
+         if (currentQuestion === (myQuestions.length - 1)) {
+             showScore();
+         }  
         currentQuestion++;
         nextQuestion();
     } else {
         console.log('this is wrong');
         timeLeft-10;
-        if (currentQuestion === (myQuestions.length - 1)) {
-            showScore();
-        }
+         if (currentQuestion === (myQuestions.length - 1)) {
+             showScore();
+         }
         currentQuestion++;
         nextQuestion();
     }
 return;    
 }
 
-//write  another function to  calculate totals and enter initials (maybe 2)
+//this dynamically builds html to give user score and ask for initials
 function showScore() {
     questionEl.classList.add('hide');  // remove the question info
     // create a new heading for HighScores
@@ -100,25 +102,26 @@ function showScore() {
     var finalText = document.createElement('p');
     finalText.innerHTML = "Your final score is: " + score;
     newDiv.appendChild(finalText);
-    var formEl = document.createElement('form'); //creates form
-    formEl.setAttribute('id', 'initials-form');  //sets form id
-    formEl.setAttribute('method', 'POST');       //sets form method
+    var formEl = document.createElement('form'); 
+    formEl.setAttribute('id', 'initials-form');  
+    formEl.setAttribute('method', 'POST');      
     newDiv.appendChild(formEl);
-    //console.log(formEl);
     formEl.innerHTML = "<label for='initials'>Please enter initials:</label>\
                         <input type='text' id='initials' name='initials'><br>";
-    console.log(formEl);
     var submitButton = document.createElement('button');
     submitButton.innerHTML = 'Submit';
     newDiv.appendChild(submitButton);
-    console.log(submitButton);
     submitButton.addEventListener("click", submitInitials);
 
 }
 
 function submitInitials(){
-    console.log('your submit button works and is connected to submitInitials !!')
+    console.log('your submit button works and is connected to submitInitials !!');
+    console.log(newDiv);
+    newDiv.setAttribute('class', 'hide');  //clears the html 
     //this will need to store the list in local storage like the todo exercise
+
+
 
 }
 
