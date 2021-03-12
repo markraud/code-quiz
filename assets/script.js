@@ -12,6 +12,7 @@ var currentQuestion = 0;
 var answerBtns = document.getElementById('answer-btns');
 var timeLeft = 90;
 var score = 0;
+var main = document.getElementById('main')
 
 
 var myQuestions = [
@@ -68,7 +69,7 @@ function checkAnswer(){
         console.log('this is correct');
         score++;
         if (currentQuestion === (myQuestions.length - 1)) {
-            highScore();
+            showScore();
         }  
         currentQuestion++;
         nextQuestion();
@@ -76,7 +77,7 @@ function checkAnswer(){
         console.log('this is wrong');
         timeLeft-10;
         if (currentQuestion === (myQuestions.length - 1)) {
-            highScore();
+            showScore();
         }
         currentQuestion++;
         nextQuestion();
@@ -84,10 +85,32 @@ function checkAnswer(){
 return;    
 }
 
-//write function to create another function to  calculate totals and enter initials 
-function highScore() {
-    console.log('build the high score');
-    // remove the question and add High Score
+//write  another function to  calculate totals and enter initials (maybe 2)
+function showScore() {
+    questionEl.classList.add('hide');  // remove the question info
+    // create a new heading for HighScores
+    newDiv = document.createElement('div');
+    newDiv.setAttribute("id", "high-score-div");
+    main.appendChild(newDiv);
+    var h2 = document.createElement('h2');
+    h2.innerHTML = 'All Done!';
+    newDiv.appendChild(h2);
+    var finalText = document.createElement('p');
+    finalText.innerHTML = "Your final score is: " + score;
+    newDiv.appendChild(finalText);
+    var initialsForm = document.createElement('form');
+    initialsForm.setAttribute('id', 'my-form')
+    initialsForm.setAttribute('name', 'myForm')
+    newDiv.appendChild(initialsForm);
+    console.log(initialsForm);
+    initialsForm.innerHTML = "<form><label for='initials'>Please enter initials:\
+    </label><br><input type='text' id='userInit' name='initials'><br></form>"
+
+    
+
+
+
+
     //create box to put initials in and log
     //display initials and score
 }
