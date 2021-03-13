@@ -1,9 +1,4 @@
-/*
-A final page showing score and asking for your initials to be entered. 
-list of high scores 
-*/
-
-
+//Initalize variables
 var startButton = document.getElementById('start-btn');  // this will start the game 
 var timerEl = document.getElementById('timer');
 var questionEl = document.getElementById('question-info');
@@ -11,9 +6,11 @@ var startInfo = document.getElementById('start-info');
 var currentQuestion = 0;
 var answerBtns = document.getElementById('answer-btns');
 var timeLeft = 90;
+var timer = document.getElementById('timer');
 var score = 0;
 var main = document.getElementById('main');
 var newDiv = '';
+var pageHeading = document.getElementById('heading');
 // var initialsInput = document.getElementById('initials');
 // var initialsForm = document.getElementsByID('initials-form');
 // var allScores =[];
@@ -75,29 +72,24 @@ function nextQuestion(){
 
 function checkAnswer(){
     if (event.target.innerText === myQuestions[currentQuestion].correctAnswer) {
-        console.log('this is correct');
+        //console.log('this is correct');
         score++;
-        //  if (currentQuestion === (myQuestions.length - 1)) {
-        //      showScore();
-        //  }  
         currentQuestion++;
         nextQuestion();
     } else {
-        console.log('this is wrong');
-        timeLeft-10;
-        //  if (currentQuestion === (myQuestions.length - 1)) {
-        //      showScore();
-        //  }
+        //console.log('this is wrong');
+        timeLeft = timeLeft - 10;
         currentQuestion++;
         nextQuestion();
     }
 return;    
 }
 
-//this dynamically builds html to give user score and ask for initials
+//this removes the elements on the page and 
+//dynamically builds html to give user score and ask for initials
 function showScore() {
-    questionEl.classList.add('hide');  // remove the question info
-    // create a new heading for HighScores
+    timer.classList.add('hide');
+    questionEl.classList.add('hide');
     newDiv = document.createElement('div');
     newDiv.setAttribute("id", "high-score-div");
     main.appendChild(newDiv);
@@ -123,11 +115,22 @@ function showScore() {
 function submitInitials(){
     console.log('your submit button works and is connected to submitInitials !!');
     console.log(newDiv);
-    newDiv.setAttribute('class', 'hide');  //clears the html 
+    newDiv.setAttribute('class', 'hide');
+    console.log(pageHeading);
+    pageHeading.setAttribute('class', 'hide');
+    
+
     //this will need to store the list in local storage like the todo exercise
 
 
 
+}
+//this function continues to the showScore function when the timer runs out
+function timerDone() {
+    console.log('The timer is done')
+    if (currentQuestion !== myQuestions.length){    // need to fix
+        showScore();
+    }
 }
 
 // Timer that counts down from 90
@@ -150,7 +153,8 @@ function countdown() {
             // Use `clearInterval()` to stop the timer
             clearInterval(timeInterval);
             // Call the `displayMessage()` function
-            displayMessage();
+            // displayMessage();
+            timerDone();
         }
     }, 1000);
 }
