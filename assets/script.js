@@ -11,9 +11,10 @@ var score = 0;
 var main = document.getElementById('main');
 var newDiv = '';
 var pageHeading = document.getElementById('heading');
-// var initialsInput = document.getElementById('initials');
-// var initialsForm = document.getElementsByID('initials-form');
-// var allScores =[];
+
+var initInput = document.getElementById('initials');
+var initForm = document.getElementsByID('initials-form');
+var initlist =document.querySelector("#init-list");
 
 var myQuestions = [
     {
@@ -37,7 +38,6 @@ var myQuestions = [
         correctAnswer: 'all of the above'
     }
 ]
-//var quizEnder = myQuestions.length - 1;
 
 function startQuiz() {
     countdown();
@@ -113,19 +113,24 @@ function showScore() {
 }
 
 function submitInitials(){
-    console.log('your submit button works and is connected to submitInitials !!');
-    console.log(newDiv);
     newDiv.setAttribute('class', 'hide');
-    console.log(pageHeading);
     pageHeading.setAttribute('class', 'hide');
-    
-
     //this will need to store the list in local storage like the todo exercise
-
-
+    var h2 = document.createElement('h2');
+    h2.innerHTML = 'High Scores!!';
+    h2.setAttribute('id','high-scores');
+    h2.setAttribute('class','container');
+    main.appendChild(h2);
+    var scoresDiv = document.createElement('div');
+    scoresDiv.setAttribute('id','scores-div');
+    scoresDiv.setAttribute('class','container');
+    main.appendChild(scoresDiv);
+    scoresDiv.innerHTML = '<ul id="init-list">stuff</ul>';
 
 }
-//this function continues to the showScore function when the timer runs out
+
+
+//this function runs the showScore function when the timer runs out
 function timerDone() {
     console.log('The timer is done')
     if (currentQuestion !== myQuestions.length){    // need to fix

@@ -104,3 +104,17 @@ main div h2 {
     max-width: 3rem;
 }
 
+#high-scores {
+    font-size: 45px;
+}
+
+#scores-div {
+
+}
+
+#init-list {
+    display: grid;
+    font-size: 20px;
+
+}
+
