@@ -11,10 +11,12 @@ var score = 0;
 var main = document.getElementById('main');
 var newDiv = '';
 var pageHeading = document.getElementById('heading');
+var initInput = ''; 
+var initForm = ''; 
+var initList = '';
+var submitButton= ''; 
 
-var initInput = document.getElementById('initials');
-var initForm = document.getElementsByID('initials-form');
-var initlist =document.querySelector("#init-list");
+var inits = [];
 
 var myQuestions = [
     {
@@ -100,12 +102,12 @@ function showScore() {
     finalText.innerHTML = "Your final score is: " + score;
     newDiv.appendChild(finalText);
     var formEl = document.createElement('form'); 
-    formEl.setAttribute('id', 'initials-form');  
+    formEl.setAttribute('id', 'init-form');  
     formEl.setAttribute('method', 'POST');      
     newDiv.appendChild(formEl);
-    formEl.innerHTML = "<label for='initials'>Please enter initials:</label>\
-                        <input type='text' id='initials' name='initials'><br>";
-    var submitButton = document.createElement('button');
+    formEl.innerHTML = "<label for='init-text'>Enter initials:</label>\
+                        <input type='text' id='init-text' name='init-text'><br>";
+    submitButton = document.createElement('button');
     submitButton.innerHTML = 'Submit';
     newDiv.appendChild(submitButton);
     submitButton.addEventListener("click", submitInitials);
@@ -125,12 +127,75 @@ function submitInitials(){
     scoresDiv.setAttribute('id','scores-div');
     scoresDiv.setAttribute('class','container');
     main.appendChild(scoresDiv);
-    scoresDiv.innerHTML = '<ul id="init-list">stuff</ul>';
+    scoresDiv.innerHTML = '<ul id="init-list"></ul>';
+    init();
+    buildInitialsList();
 
 }
 
 
-//this function runs the showScore function when the timer runs out
+function renderInits(){
+  // Clear initList element 
+  initList.innerHTML = "";
+  // Render a new li for each set of user initials
+  for (var i = 0; i < inits.length; i++) {
+    var init = inits[i];
+
+    var li = document.createElement("li");
+    li.textContent = init;
+    li.setAttribute("data-index", i);
+//    li.appendChild(button);
+    initList.appendChild(li);
+  }
+}
+
+function init() {
+    var storedInits = JSON.parse(localStorage.getItem('inits'))
+    //console.log(storedInitials);
+    if (storedInits !== null) {
+        inits = storedInits;
+      }
+    
+      // This is a helper function that will render todos to the DOM
+      renderInits();
+}
+
+function buildInitialsList(){
+    initInput = document.getElementById('init-text'); 
+    initForm = document.getElementById('init-form');
+    initList =document.getElementById('init-list');
+    console.log(initInput);
+    console.log(initForm);
+    console.log(initList);
+    console.log(inits);
+
+    //event.preventDefault();
+
+    var initText = initInput.value.trim();
+  
+    // Return from function early if submitted todoText is blank
+    if (initText === "") {
+      return;
+    }
+  
+    // Add new todoText to todos array, clear the input
+    inits.push(initText);
+    initInput.value = "";
+  
+    // Store updated todos in localStorage, re-render the list
+    storeInits();
+    renderInits();
+}
+  
+
+function storeInits() {
+    // Stringify and set key in localStorage to todos array
+    localStorage.setItem("inits", JSON.stringify(inits));
+  }
+
+
+
+// this function runs the showScore function when the timer runs out
 function timerDone() {
     console.log('The timer is done')
     if (currentQuestion !== myQuestions.length){    // need to fix

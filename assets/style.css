@@ -112,6 +112,10 @@ main div h2 {
 
 }
 
+#init-text {
+    max-width: 4rem;
+}
+
 #init-list {
     display: grid;
     font-size: 20px;
