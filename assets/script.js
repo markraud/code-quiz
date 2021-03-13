@@ -16,6 +16,7 @@ var initForm = '';
 var initList = '';
 var submitButton= ''; 
 
+var storedInits = [];
 var inits = [];
 
 var myQuestions = [
@@ -110,6 +111,7 @@ function showScore() {
     submitButton = document.createElement('button');
     submitButton.innerHTML = 'Submit';
     newDiv.appendChild(submitButton);
+    console.log(inits);
     submitButton.addEventListener("click", submitInitials);
 
 }
@@ -128,46 +130,50 @@ function submitInitials(){
     scoresDiv.setAttribute('class','container');
     main.appendChild(scoresDiv);
     scoresDiv.innerHTML = '<ul id="init-list"></ul>';
-    init();
+ //   init();     if I uncomment this it breaks - but still only works on first try
     buildInitialsList();
 
 }
 
 
 function renderInits(){
-  // Clear initList element 
-  initList.innerHTML = "";
-  // Render a new li for each set of user initials
-  for (var i = 0; i < inits.length; i++) {
-    var init = inits[i];
-
-    var li = document.createElement("li");
-    li.textContent = init;
-    li.setAttribute("data-index", i);
-//    li.appendChild(button);
-    initList.appendChild(li);
-  }
+    // Clear initList element 
+    initList.innerHTML = "";
+    // Render a new li for each set of user initials
+    for (var i = 0; i < inits.length; i++) {
+        var init = inits[i];
+        var li = document.createElement("li");
+        li.textContent = init;
+        li.setAttribute("data-index", i);
+        initList.appendChild(li);
+    }
 }
 
 function init() {
-    var storedInits = JSON.parse(localStorage.getItem('inits'))
-    //console.log(storedInitials);
+    storedInits = JSON.parse(localStorage.getItem('inits'))
+    console.log(storedInits);
     if (storedInits !== null) {
         inits = storedInits;
       }
+    console.log(inits);
     
-      // This is a helper function that will render todos to the DOM
-      renderInits();
+      // This is a helper function that will render todos to the DOM 
+      //renderInits();
+    }
+    
+function storeInits() {
+    // Stringify and set key in localStorage to todos array
+    localStorage.setItem("inits", JSON.stringify(inits));
 }
 
 function buildInitialsList(){
     initInput = document.getElementById('init-text'); 
     initForm = document.getElementById('init-form');
     initList =document.getElementById('init-list');
-    console.log(initInput);
-    console.log(initForm);
-    console.log(initList);
-    console.log(inits);
+    // console.log(initInput);
+    // console.log(initForm);
+    // console.log(initList);
+    // console.log(inits);
 
     //event.preventDefault();
 
@@ -186,14 +192,6 @@ function buildInitialsList(){
     storeInits();
     renderInits();
 }
-  
-
-function storeInits() {
-    // Stringify and set key in localStorage to todos array
-    localStorage.setItem("inits", JSON.stringify(inits));
-  }
-
-
 
 // this function runs the showScore function when the timer runs out
 function timerDone() {
@@ -230,3 +228,4 @@ function countdown() {
 }
 
 startButton.addEventListener("click", startQuiz);
+init()
