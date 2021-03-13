@@ -62,6 +62,15 @@ main div h2 {
     text-align: left;
     line-height: 1.5;
 }
+.score-container {
+    display: grid;
+    min-width: 200px;
+    max-width: 300px;
+    margin-left: 10%;
+    padding-top: 10%;
+    text-align: left;
+    line-height: 1.5;
+}
 
 #answer-btns {
     display: grid;
@@ -89,11 +98,18 @@ main div h2 {
 }
 
 #start-btn { 
+    width: 20%;
+    height: auto;
     margin-top: 10%;
     padding-top: 1%;
     padding-right: 3%;
     padding-bottom: 1%;
     padding-left: 3%;
+    border-radius: 20px;
+}
+
+#start-btn:hover {
+    background-color:tan;
 }
 
 .hide {
@@ -109,16 +125,56 @@ main div h2 {
 }
 
 #scores-div {
+    display:flex;
 
 }
 
+#sub-btn{
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+}
+
+#sub-btn:hover {
+    background-color:tan;
+}
+
+
+
 #init-text {
-    max-width: 4rem;
+    width: 5rem;
 }
 
 #init-list {
     display: grid;
+    width:30%;
     font-size: 20px;
+}
 
+.init-li {
+    margin:5%;
+    /* max-width: ; */
+    background-color:rgb(209, 199, 247);
+}
+
+#clr-btn {
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+}
+#clr-btn:hover {
+    background-color:tan;
+}
+
+#restart-btn {
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+}
+#restart-btn:hover{
+    background-color:tan;
 }
 

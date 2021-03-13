@@ -109,6 +109,7 @@ function showScore() {
     formEl.innerHTML = "<label for='init-text'>Enter initials:</label>\
                         <input type='text' id='init-text' name='init-text'><br>";
     submitButton = document.createElement('button');
+    submitButton.setAttribute('id', 'sub-btn');
     submitButton.innerHTML = 'Submit';
     newDiv.appendChild(submitButton);
     console.log(inits);
@@ -121,20 +122,37 @@ function submitInitials(){
     pageHeading.setAttribute('class', 'hide');
     //this will need to store the list in local storage like the todo exercise
     var h2 = document.createElement('h2');
-    h2.innerHTML = 'High Scores!!';
+    h2.innerHTML = 'Scores:';
     h2.setAttribute('id','high-scores');
-    h2.setAttribute('class','container');
+    h2.setAttribute('class','score-container');
     main.appendChild(h2);
     var scoresDiv = document.createElement('div');
     scoresDiv.setAttribute('id','scores-div');
     scoresDiv.setAttribute('class','container');
     main.appendChild(scoresDiv);
     scoresDiv.innerHTML = '<ul id="init-list"></ul>';
+    var clrBtn = document.createElement('button');
+    clrBtn.setAttribute('id','clr-btn');
+    clrBtn.setAttribute('onClick','clearScores();');
+    clrBtn.innerHTML = 'Clear Scores';
+    main.appendChild(clrBtn);
+    var restartBtn = document.createElement('button');
+    restartBtn.setAttribute('id','restart-btn');
+    restartBtn.setAttribute('onClick','window.location.reload();');
+    restartBtn.innerHTML = 'Retake quiz';
+    main.appendChild(restartBtn);
+
  //   init();     if I uncomment this it breaks - but still only works on first try
     buildInitialsList();
 
 }
 
+function clearScores(){
+    inits = '';
+    localStorage.clear();
+    renderInits();
+
+}
 
 function renderInits(){
     // Clear initList element 
@@ -143,19 +161,21 @@ function renderInits(){
     for (var i = 0; i < inits.length; i++) {
         var init = inits[i];
         var li = document.createElement("li");
-        li.textContent = init;
+        li.textContent = (init);
+        li.setAttribute('class', 'init-li');
         li.setAttribute("data-index", i);
         initList.appendChild(li);
     }
 }
 
 function init() {
-    storedInits = JSON.parse(localStorage.getItem('inits'))
-    console.log(storedInits);
+    storedInits = JSON.parse(localStorage.getItem('inits'));
+    // console.log(storedInits);
     if (storedInits !== null) {
         inits = storedInits;
+
       }
-    console.log(inits);
+    // console.log(inits);
     
       // This is a helper function that will render todos to the DOM 
       //renderInits();
@@ -185,13 +205,15 @@ function buildInitialsList(){
     }
   
     // Add new todoText to todos array, clear the input
-    inits.push(initText);
+    inits.push(initText + ':    ' + score);
     initInput.value = "";
   
     // Store updated todos in localStorage, re-render the list
     storeInits();
     renderInits();
 }
+
+
 
 // this function runs the showScore function when the timer runs out
 function timerDone() {
