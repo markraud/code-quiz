@@ -24,13 +24,13 @@ The website is built with HTML, CSS and JavaScript fundamentals.
 
 #### Screenshots of the quiz:
 
-![Quiz Start](.assets/Screenshot-1.jpg "Start")
+![Quiz Start](assets/Screenshot-1.jpg "Start")
 
-![Questions](.assets/Screenshot-2.jpg "Questions")
+![Questions](assets/Screenshot-2.jpg "Questions")
 
-![Submit Initials](.assets/Screenshot-3.jpg "Submit Initials")
+![Submit Initials](assets/Screenshot-3.jpg "Submit Initials")
 
-![List of Scores](.assets/Screenshot-4.jpg "List of Scores")
+![List of Scores](assets/Screenshot-4.jpg "List of Scores")
 
 #### Summary:
 
