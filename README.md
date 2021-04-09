@@ -32,6 +32,15 @@ The website is built with HTML, CSS and JavaScript fundamentals.
 
 ![List of Scores](assets/Screenshot-4.jpg "List of Scores")
 
+#### Contact Info:
+Built by Mark Raudenbush
+markraud@hotmail.com
+- [My LinkedIn](https://www.linkedin.com/in/markraudenbush)
+- [My GitHub](https://github.com/markraud?tab=stars)
+
+#### License:
+The MIT License (MIT)
+
 #### Summary:
 
 This project taught me about traversing the DOM and creating, removing and hiding HTML elements dynamically with JavaScript.
